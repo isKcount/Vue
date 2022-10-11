@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="generator" content="VuePress 2.0.0-beta.51" />
+    <meta name="theme" content="VuePress Theme Hope" />
+    <meta property="og:url" content="https://vuepress-theme-hope-docs-demo.netlify.app/zh/cicd/istio/4.Istio%E7%BB%83%E4%B9%A0%E9%A2%98.html"><meta property="og:site_name" content="文档演示"><meta property="og:title" content="Istio练习题"><meta property="og:type" content="article"><meta property="og:updated_time" content="2022-10-11T05:08:11.000Z"><meta property="og:locale" content="zh-CN"><meta property="article:published_time" content="2022-01-27T13:50:50.000Z"><meta property="article:modified_time" content="2022-10-11T05:08:11.000Z"><link rel="icon" href="/favicon.ico"><link rel="icon" href="/assets/icon/chrome-mask-512.png" type="image/png" sizes="512x512"><link rel="icon" href="/assets/icon/chrome-mask-192.png" type="image/png" sizes="192x192"><link rel="icon" href="/assets/icon/chrome-512.png" type="image/png" sizes="512x512"><link rel="icon" href="/assets/icon/chrome-192.png" type="image/png" sizes="192x192"><link rel="manifest" href="/manifest.webmanifest" crossorigin="use-credentials"><meta name="theme-color" content="#46bd87"><link rel="apple-touch-icon" href="/assets/icon/apple-icon-152.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="msapplication-TileImage" content="/assets/icon/ms-icon-144.png"><meta name="msapplication-TileColor" content="#ffffff"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"><title>Istio练习题 | 文档演示</title><meta name="description" content="vuepress-theme-hope 的文档演示">
+    <style>
+      :root {
+        --bg-color: #fff;
+      }
+
+      html[data-theme="dark"] {
+        --bg-color: #1d2025;
+      }
+
+      html,
+      body {
+        background-color: var(--bg-color);
+      }
+    </style>
+    <script>
+      const userMode = localStorage.getItem("vuepress-theme-hope-scheme");
+      const systemDarkMode =
+        window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+      if (userMode === "dark" || (userMode !== "light" && systemDarkMode)) {
+        document.querySelector("html").setAttribute("data-theme", "dark");
+      }
+    </script>
+    <link rel="stylesheet" href="/assets/style.7cb9ac72.css">
+    <link rel="modulepreload" href="/assets/app.85823306.js"><link rel="modulepreload" href="/assets/4.Istio练习题.html.74b7c723.js"><link rel="modulepreload" href="/assets/_plugin-vue_export-helper.cdc0426e.js"><link rel="modulepreload" href="/assets/4.Istio练习题.html.6a49b835.js">
+  </head>
+  <body>
+    <div id="app"><!--[--><!--[--><!--[--><span tabindex="-1"></span><a href="#main-content" class="skip-link sr-only">Skip to content</a><!--]--><div class="theme-container has-toc"><!--[--><!--[--><header class="navbar"><div class="navbar-left"><button class="toggle-sidebar-button" title="Toggle Sidebar"><span class="icon"></span></button><!----><a href="/zh" class="brand"><img class="logo" src="/logo.svg" alt="文档演示"><!----><span class="site-name hide-in-pad">文档演示</span></a><!----></div><div class="navbar-center"><!----><nav class="nav-links"><div class="nav-item hide-in-mobile"><a href="/zh" class="nav-link" aria-label="isKcount"><span class="icon iconfont icon-home"></span>isKcount<!----></a></div><div class="nav-item hide-in-mobile"><div class="dropdown-wrapper"><button class="dropdown-title" type="button" aria-label="分类"><span class="title"><span class="icon iconfont icon-interact"></span>分类</span><span class="arrow"></span><ul class="nav-dropdown"><li class="dropdown-item"><a href="/zh/isKcount/1/" class="nav-link" aria-label="学习路线规划"><span class="icon iconfont icon-ability"></span>学习路线规划<!----></a></li><li class="dropdown-item"><a href="/zh/isKcount/2/" class="nav-link" aria-label="考证"><span class="icon iconfont icon-relation"></span>考证<!----></a></li><li class="dropdown-item"><a href="/zh/isKcount/3/" class="nav-link" aria-label="运维笔记"><span class="icon iconfont icon-linux"></span>运维笔记<!----></a></li><li class="dropdown-item"><a href="/zh/isKcount/4/" class="nav-link" aria-label="后端开发笔记"><span class="icon iconfont icon-note"></span>后端开发笔记<!----></a></li><li class="dropdown-item"><a href="/zh/isKcount/5/" class="nav-link" aria-label="前端开发笔记"><span class="icon iconfont icon-like"></span>前端开发笔记<!----></a></li><li class="dropdown-item"><a href="/zh/isKcount/6/" class="nav-link" aria-label="中间件服务笔记"><span class="icon iconfont icon-api"></span>中间件服务笔记<!----></a></li></ul></button></div></div><div class="nav-item hide-in-mobile"><div class="dropdown-wrapper"><button class="dropdown-title" type="button" aria-label="Devops"><span class="title"><span class="icon iconfont icon-select"></span>Devops</span><span class="arrow"></span><ul class="nav-dropdown"><li class="dropdown-item"><a href="/zh/cicd/git/" class="nav-link" aria-label="Git开发手册"><span class="icon iconfont icon-git"></span>Git开发手册<!----></a></li><li class="dropdown-item"><a href="/zh/cicd/ci/" class="nav-link" aria-label="CICD"><span class="icon iconfont icon-ci"></span>CICD<!----></a></li><li class="dropdown-item"><a href="/zh/cicd/istio/" class="nav-link active" aria-label="Istio"><span class="icon iconfont icon-material"></span>Istio<!----></a></li><li class="dropdown-item"><a href="/zh/cicd/operator/" class="nav-link" aria-label="Operator"><span class="icon iconfont icon-proxy"></span>Operator<!----></a></li></ul></button></div></div><div class="nav-item hide-in-mobile"><a href="https://wallhaven.cc/" rel="noopener noreferrer" target="_blank" aria-label="Wallhaven" class="nav-link"><span class="icon iconfont icon-autumn"></span>Wallhaven<span><svg class="external-link-icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg><span class="external-link-icon-sr-only">open in new window</span></span><!----></a></div></nav><!----></div><div class="navbar-right"><!----><!----><div class="nav-item"><a class="repo-link" href="https://github.com/vuepress-theme-hope/vuepress-theme-hope" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><svg xmlns="http://www.w3.org/2000/svg" class="icon github-icon" viewBox="0 0 1024 1024" fill="currentColor" aria-label="github icon" style="width:1.25rem;height:1.25rem;vertical-align:middle;"><path d="M511.957 21.333C241.024 21.333 21.333 240.981 21.333 512c0 216.832 140.544 400.725 335.574 465.664 24.49 4.395 32.256-10.07 32.256-23.083 0-11.69.256-44.245 0-85.205-136.448 29.61-164.736-64.64-164.736-64.64-22.315-56.704-54.4-71.765-54.4-71.765-44.587-30.464 3.285-29.824 3.285-29.824 49.195 3.413 75.179 50.517 75.179 50.517 43.776 75.008 114.816 53.333 142.762 40.79 4.523-31.66 17.152-53.377 31.19-65.537-108.971-12.458-223.488-54.485-223.488-242.602 0-53.547 19.114-97.323 50.517-131.67-5.035-12.33-21.93-62.293 4.779-129.834 0 0 41.258-13.184 134.912 50.346a469.803 469.803 0 0 1 122.88-16.554c41.642.213 83.626 5.632 122.88 16.554 93.653-63.488 134.784-50.346 134.784-50.346 26.752 67.541 9.898 117.504 4.864 129.834 31.402 34.347 50.474 78.123 50.474 131.67 0 188.586-114.73 230.016-224.042 242.09 17.578 15.232 33.578 44.672 33.578 90.454v135.85c0 13.142 7.936 27.606 32.854 22.87C862.25 912.597 1002.667 728.747 1002.667 512c0-271.019-219.648-490.667-490.71-490.667z"></path></svg></a></div><div class="nav-item hide-in-mobile"><button class="outlook-button" tabindex="-1" ariahidden="true"><svg xmlns="http://www.w3.org/2000/svg" class="icon outlook-icon" viewBox="0 0 1024 1024" fill="currentColor" aria-label="outlook icon"><path d="M224 800c0 9.6 3.2 44.8 6.4 54.4 6.4 48-48 76.8-48 76.8s80 41.6 147.2 0 134.4-134.4 38.4-195.2c-22.4-12.8-41.6-19.2-57.6-19.2C259.2 716.8 227.2 761.6 224 800zM560 675.2l-32 51.2c-51.2 51.2-83.2 32-83.2 32 25.6 67.2 0 112-12.8 128 25.6 6.4 51.2 9.6 80 9.6 54.4 0 102.4-9.6 150.4-32l0 0c3.2 0 3.2-3.2 3.2-3.2 22.4-16 12.8-35.2 6.4-44.8-9.6-12.8-12.8-25.6-12.8-41.6 0-54.4 60.8-99.2 137.6-99.2 6.4 0 12.8 0 22.4 0 12.8 0 38.4 9.6 48-25.6 0-3.2 0-3.2 3.2-6.4 0-3.2 3.2-6.4 3.2-6.4 6.4-16 6.4-16 6.4-19.2 9.6-35.2 16-73.6 16-115.2 0-105.6-41.6-198.4-108.8-268.8C704 396.8 560 675.2 560 675.2zM224 419.2c0-28.8 22.4-51.2 51.2-51.2 28.8 0 51.2 22.4 51.2 51.2 0 28.8-22.4 51.2-51.2 51.2C246.4 470.4 224 448 224 419.2zM320 284.8c0-22.4 19.2-41.6 41.6-41.6 22.4 0 41.6 19.2 41.6 41.6 0 22.4-19.2 41.6-41.6 41.6C339.2 326.4 320 307.2 320 284.8zM457.6 208c0-12.8 12.8-25.6 25.6-25.6 12.8 0 25.6 12.8 25.6 25.6 0 12.8-12.8 25.6-25.6 25.6C470.4 233.6 457.6 220.8 457.6 208zM128 505.6C128 592 153.6 672 201.6 736c28.8-60.8 112-60.8 124.8-60.8-16-51.2 16-99.2 16-99.2l316.8-422.4c-48-19.2-99.2-32-150.4-32C297.6 118.4 128 291.2 128 505.6zM764.8 86.4c-22.4 19.2-390.4 518.4-390.4 518.4-22.4 28.8-12.8 76.8 22.4 99.2l9.6 6.4c35.2 22.4 80 12.8 99.2-25.6 0 0 6.4-12.8 9.6-19.2 54.4-105.6 275.2-524.8 288-553.6 6.4-19.2-3.2-32-19.2-32C777.6 76.8 771.2 80 764.8 86.4z"></path></svg><div class="outlook-dropdown"><!----></div></button></div><form class="search-box" role="search"><input type="search" placeholder="搜索" autocomplete="off" spellcheck="false" value><!----></form><!----><button class="toggle-navbar-button" aria-label="Toggle Navbar" aria-expanded="false" aria-controls="nav-screen"><span class="button-container"><span class="button-top"></span><span class="button-middle"></span><span class="button-bottom"></span></span></button></div></header><!----><!--]--><!----><div class="toggle-sidebar-wrapper"><span class="arrow left"></span></div><aside class="sidebar"><!--[--><!----><!--]--><ul class="sidebar-links"><li><!--[--><a href="/zh/cicd/" class="nav-link sidebar-link sidebar-page" aria-label="Devops生态"><!---->Devops生态<!----></a><ul class="sidebar-sub-headers"></ul><!--]--></li><li><section class="sidebar-group"><button class="sidebar-heading clickable"><span class="icon iconfont icon-github"></span><span class="title">Git手册</span><span class="arrow right"></span></button><!----></section></li><li><section class="sidebar-group"><button class="sidebar-heading clickable"><span class="icon iconfont icon-ci"></span><span class="title">CICD</span><span class="arrow right"></span></button><!----></section></li><li><section class="sidebar-group"><button class="sidebar-heading clickable active"><span class="icon iconfont icon-material"></span><span class="title">Istio</span><span class="arrow down"></span></button><ul class="sidebar-links"><li><!--[--><a href="/zh/cicd/istio/1.Istio%E6%A6%82%E8%BF%B0.html" class="nav-link sidebar-link sidebar-page" aria-label="Istio概述"><!---->Istio概述<!----></a><ul class="sidebar-sub-headers"></ul><!--]--></li><li><!--[--><a href="/zh/cicd/istio/2.Istio%E5%AE%89%E8%A3%85.html" class="nav-link sidebar-link sidebar-page" aria-label="Istio安装"><!---->Istio安装<!----></a><ul class="sidebar-sub-headers"></ul><!--]--></li><li><!--[--><a href="/zh/cicd/istio/3.Istio%E7%9A%84%E6%B7%B1%E5%85%A5%E6%B5%85.html" class="nav-link sidebar-link sidebar-page" aria-label="Istio由浅入深"><!---->Istio由浅入深<!----></a><ul class="sidebar-sub-headers"></ul><!--]--></li><li><!--[--><a aria-current="page" href="/zh/cicd/istio/4.Istio%E7%BB%83%E4%B9%A0%E9%A2%98.html" class="router-link-active router-link-exact-active nav-link active sidebar-link sidebar-page active" aria-label="Istio练习题"><!---->Istio练习题<!----></a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a aria-current="page" href="/zh/cicd/istio/4.Istio%E7%BB%83%E4%B9%A0%E9%A2%98.html#bookinfo练习" class="router-link-active router-link-exact-active nav-link sidebar-link heading" aria-label="Bookinfo练习"><!---->Bookinfo练习<!----></a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a aria-current="page" href="/zh/cicd/istio/4.Istio%E7%BB%83%E4%B9%A0%E9%A2%98.html#部署bookinfo" class="router-link-active router-link-exact-active nav-link sidebar-link heading" aria-label="部署Bookinfo"><!---->部署Bookinfo<!----></a><ul class="sidebar-sub-headers"></ul></li><li class="sidebar-sub-header"><a aria-current="page" href="/zh/cicd/istio/4.Istio%E7%BB%83%E4%B9%A0%E9%A2%98.html#入口网关" class="router-link-active router-link-exact-active nav-link sidebar-link heading" aria-label="入口网关"><!---->入口网关<!----></a><ul class="sidebar-sub-headers"></ul></li><li class="sidebar-sub-header"><a aria-current="page" href="/zh/cicd/istio/4.Istio%E7%BB%83%E4%B9%A0%E9%A2%98.html#虚拟服务" class="router-link-active router-link-exact-active nav-link sidebar-link heading" aria-label="虚拟服务"><!---->虚拟服务<!----></a><ul class="sidebar-sub-headers"></ul></li><li class="sidebar-sub-header"><a aria-current="page" href="/zh/cicd/istio/4.Istio%E7%BB%83%E4%B9%A0%E9%A2%98.html#目的地规则" class="router-link-active router-link-exact-active nav-link sidebar-link heading" aria-label="目的地规则"><!---->目的地规则<!----></a><ul class="sidebar-sub-headers"></ul></li></ul></li><li class="sidebar-sub-header"><a aria-current="page" href="/zh/cicd/istio/4.Istio%E7%BB%83%E4%B9%A0%E9%A2%98.html#httpbin练习" class="router-link-active router-link-exact-active nav-link sidebar-link heading" aria-label="httpbin练习"><!---->httpbin练习<!----></a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a aria-current="page" href="/zh/cicd/istio/4.Istio%E7%BB%83%E4%B9%A0%E9%A2%98.html#istio网关配置入口" class="router-link-active router-link-exact-active nav-link sidebar-link heading" aria-label="Istio网关配置入口"><!---->Istio网关配置入口<!----></a><ul class="sidebar-sub-headers"></ul></li><li class="sidebar-sub-header"><a aria-current="page" href="/zh/cicd/istio/4.Istio%E7%BB%83%E4%B9%A0%E9%A2%98.html#虚拟服务配置" class="router-link-active router-link-exact-active nav-link sidebar-link heading" aria-label="虚拟服务配置"><!---->虚拟服务配置<!----></a><ul class="sidebar-sub-headers"></ul></li></ul></li><li class="sidebar-sub-header"><a aria-current="page" href="/zh/cicd/istio/4.Istio%E7%BB%83%E4%B9%A0%E9%A2%98.html#其他" class="router-link-active router-link-exact-active nav-link sidebar-link heading" aria-label="其他"><!---->其他<!----></a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a aria-current="page" href="/zh/cicd/istio/4.Istio%E7%BB%83%E4%B9%A0%E9%A2%98.html#添加目的地规则" class="router-link-active router-link-exact-active nav-link sidebar-link heading" aria-label="添加目的地规则"><!---->添加目的地规则<!----></a><ul class="sidebar-sub-headers"></ul></li><li class="sidebar-sub-header"><a aria-current="page" href="/zh/cicd/istio/4.Istio%E7%BB%83%E4%B9%A0%E9%A2%98.html#流量控制" class="router-link-active router-link-exact-active nav-link sidebar-link heading" aria-label="流量控制"><!---->流量控制<!----></a><ul class="sidebar-sub-headers"></ul></li><li class="sidebar-sub-header"><a aria-current="page" href="/zh/cicd/istio/4.Istio%E7%BB%83%E4%B9%A0%E9%A2%98.html#故障注入" class="router-link-active router-link-exact-active nav-link sidebar-link heading" aria-label="故障注入"><!---->故障注入<!----></a><ul class="sidebar-sub-headers"></ul></li><li class="sidebar-sub-header"><a aria-current="page" href="/zh/cicd/istio/4.Istio%E7%BB%83%E4%B9%A0%E9%A2%98.html#请求超时" class="router-link-active router-link-exact-active nav-link sidebar-link heading" aria-label="请求超时"><!---->请求超时<!----></a><ul class="sidebar-sub-headers"></ul></li></ul></li><li class="sidebar-sub-header"><a aria-current="page" href="/zh/cicd/istio/4.Istio%E7%BB%83%E4%B9%A0%E9%A2%98.html#金丝雀发布" class="router-link-active router-link-exact-active nav-link sidebar-link heading" aria-label="金丝雀发布"><!---->金丝雀发布<!----></a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a aria-current="page" href="/zh/cicd/istio/4.Istio%E7%BB%83%E4%B9%A0%E9%A2%98.html#【题目1】金丝雀发布-安装" class="router-link-active router-link-exact-active nav-link sidebar-link heading" aria-label="【题目1】金丝雀发布-安装"><!---->【题目1】金丝雀发布-安装<!----></a><ul class="sidebar-sub-headers"></ul></li><li class="sidebar-sub-header"><a aria-current="page" href="/zh/cicd/istio/4.Istio%E7%BB%83%E4%B9%A0%E9%A2%98.html#【题目2】金丝雀发布-流量控制" class="router-link-active router-link-exact-active nav-link sidebar-link heading" aria-label="【题目2】金丝雀发布-流量控制"><!---->【题目2】金丝雀发布-流量控制<!----></a><ul class="sidebar-sub-headers"></ul></li><li class="sidebar-sub-header"><a aria-current="page" href="/zh/cicd/istio/4.Istio%E7%BB%83%E4%B9%A0%E9%A2%98.html#【题目3】金丝雀发布-熔断" class="router-link-active router-link-exact-active nav-link sidebar-link heading" aria-label="【题目3】金丝雀发布-熔断"><!---->【题目3】金丝雀发布-熔断<!----></a><ul class="sidebar-sub-headers"></ul></li><li class="sidebar-sub-header"><a aria-current="page" href="/zh/cicd/istio/4.Istio%E7%BB%83%E4%B9%A0%E9%A2%98.html#【题目-4】金丝雀发布-流量镜像" class="router-link-active router-link-exact-active nav-link sidebar-link heading" aria-label="【题目 4】金丝雀发布-流量镜像"><!---->【题目 4】金丝雀发布-流量镜像<!----></a><ul class="sidebar-sub-headers"></ul></li><li class="sidebar-sub-header"><a aria-current="page" href="/zh/cicd/istio/4.Istio%E7%BB%83%E4%B9%A0%E9%A2%98.html#【题目-5】金丝雀发布-ingress-gateway" class="router-link-active router-link-exact-active nav-link sidebar-link heading" aria-label="【题目 5】金丝雀发布-Ingress Gateway"><!---->【题目 5】金丝雀发布-Ingress Gateway<!----></a><ul class="sidebar-sub-headers"></ul></li></ul></li></ul><!--]--></li></ul></section></li><li><section class="sidebar-group"><button class="sidebar-heading clickable"><span class="icon iconfont icon-proxy"></span><span class="title">Operator</span><span class="arrow right"></span></button><!----></section></li></ul><!--[--><!----><!--]--></aside><!--[--><main class="page" id="main-content"><!--[--><!----><nav class="breadcrumb disable"></nav><div class="page-title"><h1><!---->Istio练习题</h1><div class="page-info"><span class="author-info" aria-label="作者🖊" data-balloon-pos="down"><svg xmlns="http://www.w3.org/2000/svg" class="icon author-icon" viewBox="0 0 1024 1024" fill="currentColor" aria-label="author icon"><path d="M649.6 633.6c86.4-48 147.2-144 147.2-249.6 0-160-128-288-288-288s-288 128-288 288c0 108.8 57.6 201.6 147.2 249.6-121.6 48-214.4 153.6-240 288-3.2 9.6 0 19.2 6.4 25.6 3.2 9.6 12.8 12.8 22.4 12.8h704c9.6 0 19.2-3.2 25.6-12.8 6.4-6.4 9.6-16 6.4-25.6-25.6-134.4-121.6-240-243.2-288z"></path></svg><span><a class="author-item" href="https://iskcount.github.io" target="_blank" rel="noopener noreferrer">isKcount</a></span><span property="author" content="isKcount"></span></span><!----><span class="date-info" aria-label="写作日期📅" data-balloon-pos="down"><svg xmlns="http://www.w3.org/2000/svg" class="icon calendar-icon" viewBox="0 0 1024 1024" fill="currentColor" aria-label="calendar icon"><path d="M716.4 110.137c0-18.753-14.72-33.473-33.472-33.473-18.753 0-33.473 14.72-33.473 33.473v33.473h66.993v-33.473zm-334.87 0c0-18.753-14.72-33.473-33.473-33.473s-33.52 14.72-33.52 33.473v33.473h66.993v-33.473zm468.81 33.52H716.4v100.465c0 18.753-14.72 33.473-33.472 33.473a33.145 33.145 0 01-33.473-33.473V143.657H381.53v100.465c0 18.753-14.72 33.473-33.473 33.473a33.145 33.145 0 01-33.473-33.473V143.657H180.6A134.314 134.314 0 0046.66 277.595v535.756A134.314 134.314 0 00180.6 947.289h669.74a134.36 134.36 0 00133.94-133.938V277.595a134.314 134.314 0 00-133.94-133.938zm33.473 267.877H147.126a33.145 33.145 0 01-33.473-33.473c0-18.752 14.72-33.473 33.473-33.473h736.687c18.752 0 33.472 14.72 33.472 33.473a33.145 33.145 0 01-33.472 33.473z"></path></svg><span>2022年1月27日</span><meta property="datePublished" content="2022-01-27T13:50:50.000Z"></span><!----><!----><span class="reading-time-info" aria-label="阅读时间⌛" data-balloon-pos="down"><svg xmlns="http://www.w3.org/2000/svg" class="icon timer-icon" viewBox="0 0 1024 1024" fill="currentColor" aria-label="timer icon"><path d="M799.387 122.15c4.402-2.978 7.38-7.897 7.38-13.463v-1.165c0-8.933-7.38-16.312-16.312-16.312H256.33c-8.933 0-16.311 7.38-16.311 16.312v1.165c0 5.825 2.977 10.874 7.637 13.592 4.143 194.44 97.22 354.963 220.201 392.763-122.204 37.542-214.893 196.511-220.2 389.397-4.661 5.049-7.638 11.651-7.638 19.03v5.825h566.49v-5.825c0-7.379-2.849-13.981-7.509-18.9-5.049-193.016-97.867-351.985-220.2-389.527 123.24-37.67 216.446-198.453 220.588-392.892zM531.16 450.445v352.632c117.674 1.553 211.787 40.778 211.787 88.676H304.097c0-48.286 95.149-87.382 213.728-88.676V450.445c-93.077-3.107-167.901-81.297-167.901-177.093 0-8.803 6.99-15.793 15.793-15.793 8.803 0 15.794 6.99 15.794 15.793 0 80.261 63.69 145.635 142.01 145.635s142.011-65.374 142.011-145.635c0-8.803 6.99-15.793 15.794-15.793s15.793 6.99 15.793 15.793c0 95.019-73.789 172.82-165.96 177.093z"></path></svg><span>大约 10 分钟</span><meta property="timeRequired" content="PT10M"></span></div><hr></div><div class="toc-place-holder"><aside id="toc"><div class="toc-header">此页内容</div><div class="toc-wrapper"><ul class="toc-list"><!--[--><li class="toc-item"><a aria-current="page" href="/zh/cicd/istio/4.Istio%E7%BB%83%E4%B9%A0%E9%A2%98.html#bookinfo练习" class="router-link-active router-link-exact-active toc-link level2">Bookinfo练习</a></li><ul class="toc-list"><!--[--><li class="toc-item"><a aria-current="page" href="/zh/cicd/istio/4.Istio%E7%BB%83%E4%B9%A0%E9%A2%98.html#部署bookinfo" class="router-link-active router-link-exact-active toc-link level3">部署Bookinfo</a></li><!----><!--]--><!--[--><li class="toc-item"><a aria-current="page" href="/zh/cicd/istio/4.Istio%E7%BB%83%E4%B9%A0%E9%A2%98.html#入口网关" class="router-link-active router-link-exact-active toc-link level3">入口网关</a></li><!----><!--]--><!--[--><li class="toc-item"><a aria-current="page" href="/zh/cicd/istio/4.Istio%E7%BB%83%E4%B9%A0%E9%A2%98.html#虚拟服务" class="router-link-active router-link-exact-active toc-link level3">虚拟服务</a></li><!----><!--]--><!--[--><li class="toc-item"><a aria-current="page" href="/zh/cicd/istio/4.Istio%E7%BB%83%E4%B9%A0%E9%A2%98.html#目的地规则" class="router-link-active router-link-exact-active toc-link level3">目的地规则</a></li><!----><!--]--></ul><!--]--><!--[--><li class="toc-item"><a aria-current="page" href="/zh/cicd/istio/4.Istio%E7%BB%83%E4%B9%A0%E9%A2%98.html#httpbin练习" class="router-link-active router-link-exact-active toc-link level2">httpbin练习</a></li><ul class="toc-list"><!--[--><li class="toc-item"><a aria-current="page" href="/zh/cicd/istio/4.Istio%E7%BB%83%E4%B9%A0%E9%A2%98.html#istio网关配置入口" class="router-link-active router-link-exact-active toc-link level3">Istio网关配置入口</a></li><!----><!--]--><!--[--><li class="toc-item"><a aria-current="page" href="/zh/cicd/istio/4.Istio%E7%BB%83%E4%B9%A0%E9%A2%98.html#虚拟服务配置" class="router-link-active router-link-exact-active toc-link level3">虚拟服务配置</a></li><!----><!--]--></ul><!--]--><!--[--><li class="toc-item"><a aria-current="page" href="/zh/cicd/istio/4.Istio%E7%BB%83%E4%B9%A0%E9%A2%98.html#其他" class="router-link-active router-link-exact-active toc-link level2">其他</a></li><ul class="toc-list"><!--[--><li class="toc-item"><a aria-current="page" href="/zh/cicd/istio/4.Istio%E7%BB%83%E4%B9%A0%E9%A2%98.html#添加目的地规则" class="router-link-active router-link-exact-active toc-link level3">添加目的地规则</a></li><!----><!--]--><!--[--><li class="toc-item"><a aria-current="page" href="/zh/cicd/istio/4.Istio%E7%BB%83%E4%B9%A0%E9%A2%98.html#流量控制" class="router-link-active router-link-exact-active toc-link level3">流量控制</a></li><!----><!--]--><!--[--><li class="toc-item"><a aria-current="page" href="/zh/cicd/istio/4.Istio%E7%BB%83%E4%B9%A0%E9%A2%98.html#故障注入" class="router-link-active router-link-exact-active toc-link level3">故障注入</a></li><!----><!--]--><!--[--><li class="toc-item"><a aria-current="page" href="/zh/cicd/istio/4.Istio%E7%BB%83%E4%B9%A0%E9%A2%98.html#请求超时" class="router-link-active router-link-exact-active toc-link level3">请求超时</a></li><!----><!--]--></ul><!--]--><!--[--><li class="toc-item"><a aria-current="page" href="/zh/cicd/istio/4.Istio%E7%BB%83%E4%B9%A0%E9%A2%98.html#金丝雀发布" class="router-link-active router-link-exact-active toc-link level2">金丝雀发布</a></li><ul class="toc-list"><!--[--><li class="toc-item"><a aria-current="page" href="/zh/cicd/istio/4.Istio%E7%BB%83%E4%B9%A0%E9%A2%98.html#【题目1】金丝雀发布-安装" class="router-link-active router-link-exact-active toc-link level3">【题目1】金丝雀发布-安装</a></li><!----><!--]--><!--[--><li class="toc-item"><a aria-current="page" href="/zh/cicd/istio/4.Istio%E7%BB%83%E4%B9%A0%E9%A2%98.html#【题目2】金丝雀发布-流量控制" class="router-link-active router-link-exact-active toc-link level3">【题目2】金丝雀发布-流量控制</a></li><!----><!--]--><!--[--><li class="toc-item"><a aria-current="page" href="/zh/cicd/istio/4.Istio%E7%BB%83%E4%B9%A0%E9%A2%98.html#【题目3】金丝雀发布-熔断" class="router-link-active router-link-exact-active toc-link level3">【题目3】金丝雀发布-熔断</a></li><!----><!--]--><!--[--><li class="toc-item"><a aria-current="page" href="/zh/cicd/istio/4.Istio%E7%BB%83%E4%B9%A0%E9%A2%98.html#【题目-4】金丝雀发布-流量镜像" class="router-link-active router-link-exact-active toc-link level3">【题目 4】金丝雀发布-流量镜像</a></li><!----><!--]--><!--[--><li class="toc-item"><a aria-current="page" href="/zh/cicd/istio/4.Istio%E7%BB%83%E4%B9%A0%E9%A2%98.html#【题目-5】金丝雀发布-ingress-gateway" class="router-link-active router-link-exact-active toc-link level3">【题目 5】金丝雀发布-Ingress Gateway</a></li><!----><!--]--></ul><!--]--></ul></div></aside></div><!----><div class="theme-hope-content"><h2 id="bookinfo练习" tabindex="-1"><a class="header-anchor" href="#bookinfo练习" aria-hidden="true">#</a> Bookinfo练习</h2><h3 id="部署bookinfo" tabindex="-1"><a class="header-anchor" href="#部署bookinfo" aria-hidden="true">#</a> 部署Bookinfo</h3><p>第一步我们只需要部署我们的Bookinfo微服务就行了，包括网关路由规则等我们都不需要做，因为后面分开练习。</p><p>成功跑起所有的Pod之后我们需要创建入口网关，使用虚拟服务绑定入口网关</p><div class="language-bash ext-sh line-numbers-mode"><pre class="language-bash"><code>$ kubectl apply <span class="token parameter variable">-f</span> samples/bookinfo/platform/kube/bookinfo.yaml
+$ kubectl get pods 
+NAME                              READY   STATUS    RESTARTS   AGE
+details-v1-79f774bdb9-pvjjl       <span class="token number">2</span>/2     Running   <span class="token number">0</span>          29m
+productpage-v1-6b746f74dc-kg9lk   <span class="token number">2</span>/2     Running   <span class="token number">0</span>          29m
+ratings-v1-b6994bb9-sd7lj         <span class="token number">2</span>/2     Running   <span class="token number">0</span>          29m
+reviews-v1-545db77b95-mwnmd       <span class="token number">2</span>/2     Running   <span class="token number">0</span>          29m
+reviews-v2-7bf8c9648f-jbgqb       <span class="token number">2</span>/2     Running   <span class="token number">0</span>          29m
+reviews-v3-84779c7bbc-n67ph       <span class="token number">2</span>/2     Running   <span class="token number">0</span>          29m
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="入口网关" tabindex="-1"><a class="header-anchor" href="#入口网关" aria-hidden="true">#</a> 入口网关</h3><ol><li>配置入口网关为istio默认的ingressgateway（已经绑定到NodePort）</li><li>配置Bookinfo服务器使用HTTP，端口是80</li><li>公开的范围为所有的主机（使用bookinfo.app就访问不了）</li></ol><div class="language-yaml ext-yml line-numbers-mode"><pre class="language-yaml"><code>$ cat gateway.yaml 
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> networking.istio.io/v1alpha3 
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Gateway 
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span> 
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> bookinfo<span class="token punctuation">-</span>gateway 
+<span class="token key atrule">spec</span><span class="token punctuation">:</span> 
+  <span class="token key atrule">selector</span><span class="token punctuation">:</span> 				<span class="token comment">#选择器，选择默认istio的ingressgateway</span>
+    <span class="token key atrule">istio</span><span class="token punctuation">:</span> ingressgateway 
+  <span class="token key atrule">servers</span><span class="token punctuation">:</span> 					<span class="token comment">#服务器选择列表的规范</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">port</span><span class="token punctuation">:</span> 
+      <span class="token key atrule">number</span><span class="token punctuation">:</span> <span class="token number">80</span> 
+      <span class="token key atrule">name</span><span class="token punctuation">:</span>  http 
+      <span class="token key atrule">protocol</span><span class="token punctuation">:</span> HTTP 
+    <span class="token key atrule">hosts</span><span class="token punctuation">:</span> 
+    <span class="token punctuation">-</span> <span class="token string">&quot;*&quot;</span> 
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>执行gateway查看详细</p><div class="language-bash ext-sh line-numbers-mode"><pre class="language-bash"><code>$ kubectl get gateway
+NAME AGE
+bookinfo-gateway 9d
+
+$ kubectl describe gateway bookinfo-gateway
+Name: bookinfo-gateway
+Namespace: default
+Labels: <span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>
+Annotations: API Version: networking.istio.io/v1beta1
+Kind: Gateway
+<span class="token punctuation">..</span>.
+Spec:
+  Selector:
+    Istio:  ingressgateway
+  Servers:
+    Hosts:
+      bookinfo.app
+    Port:
+      Name:      http
+      Number:    <span class="token number">80</span>
+      Protocol:  HTTP
+Events:          <span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="虚拟服务" tabindex="-1"><a class="header-anchor" href="#虚拟服务" aria-hidden="true">#</a> 虚拟服务</h3><p>如下是Bookinfo的虚拟服务架构图</p><img src="https://pic.imgdb.cn/item/61ec039c2ab3f51d912a87f3.png" style="zoom:67%;"><p>可以看到bookinfo的所有访问地址如下</p><div class="language-bash ext-sh line-numbers-mode"><pre class="language-bash"><code>http://bookinfo.app /productpage
+http://bookinfo.app/static/*
+http://bookinfo.app /login
+http://bookinfo.app/logout
+http://bookinfo.app/api/v1/products
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>所以请如下操作：</p><ol><li>虚拟服务需要绑定入口网关bookinfo-gateway</li><li>发送流量的目的主机是范围是所有</li><li>你需要创建一个HTTP流量的有序路由规则列表</li><li>匹配准确的路径是 /productpage /login /logout 前缀是/status /api/v1/products</li><li>重定向转发的默认为流量目的地是主机是productpage 端口9080</li></ol><div class="language-yaml ext-yml line-numbers-mode"><pre class="language-yaml"><code><span class="token punctuation">[</span>root@master istio<span class="token punctuation">-</span>1.9.5<span class="token punctuation">]</span><span class="token comment"># cat virtualservice.yaml </span>
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> networking.istio.io/v1alpha3 
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> VirtualService 
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span> 
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> bookinfo 
+<span class="token key atrule">spec</span><span class="token punctuation">:</span> 
+  <span class="token key atrule">hosts</span><span class="token punctuation">:</span> 
+  <span class="token punctuation">-</span> <span class="token string">&quot;bookinfo.app&quot;</span>
+  <span class="token key atrule">gateways</span><span class="token punctuation">:</span> 
+  <span class="token punctuation">-</span> bookinfo<span class="token punctuation">-</span>gateway 
+  <span class="token key atrule">http</span><span class="token punctuation">:</span>  					<span class="token comment">#有序路由表</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">match</span><span class="token punctuation">:</span> 					<span class="token comment">#匹配规则</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">uri</span><span class="token punctuation">:</span> 
+        <span class="token key atrule">exact</span><span class="token punctuation">:</span> /productpage 
+    <span class="token punctuation">-</span> <span class="token key atrule">uri</span><span class="token punctuation">:</span> 
+        <span class="token key atrule">prefix</span><span class="token punctuation">:</span> /status 
+    <span class="token punctuation">-</span> <span class="token key atrule">uri</span><span class="token punctuation">:</span> 
+        <span class="token key atrule">exact</span><span class="token punctuation">:</span> /login 
+    <span class="token punctuation">-</span> <span class="token key atrule">uri</span><span class="token punctuation">:</span> 
+        <span class="token key atrule">exact</span><span class="token punctuation">:</span> /logout 
+    <span class="token punctuation">-</span> <span class="token key atrule">uri</span><span class="token punctuation">:</span> 
+        <span class="token key atrule">prefix</span><span class="token punctuation">:</span> /api/v1/products 
+    <span class="token key atrule">route</span><span class="token punctuation">:</span> 					<span class="token comment">#默认转发的流量</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">destination</span><span class="token punctuation">:</span> 			<span class="token comment">#目的地</span>
+        <span class="token key atrule">host</span><span class="token punctuation">:</span> productpage   <span class="token comment">#目的主机</span>
+        <span class="token key atrule">port</span><span class="token punctuation">:</span> 
+          <span class="token key atrule">number</span><span class="token punctuation">:</span> <span class="token number">9080</span>  
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="目的地规则" tabindex="-1"><a class="header-anchor" href="#目的地规则" aria-hidden="true">#</a> 目的地规则</h3><p>如下是bookinfo的目的地规则，需要经过v1、 v2、v3的流量</p><img src="https://pic.imgdb.cn/item/61ec03a52ab3f51d912a9236.png" style="zoom:67%;"><img src="https://pic.imgdb.cn/item/61ec03a82ab3f51d912a962d.png" style="zoom:67%;"><p>可以看出ProductPage经过Reviewsv1是60%的流量，Reviewsv2和Reviewsv3是一样的20%的流量。</p><p><code>DestinationRule</code>定义在路由发生后应用于服务流量的策略。这些规则指定负载平衡的配置、来自 sidecar 的连接池大小以及异常检测设置，以检测和从负载平衡池中驱逐不健康的主机。</p><p>可以通过定义命名<code>subset</code>和覆盖在服务级别指定的设置来指定特定于版本的策略 。以上规则对所有流向名为v1、v2、v3的子集的流量使用循环负载平衡策略。</p><p>所以需要做如下操作</p><ol><li>创建一个目的地规则productpage默认选择v1的流量</li><li>创建一个reviews目的地规则有三个版本策略，对名为v1，v2，v3的子集流量负载。</li><li>创建一个ratings目的地规则有三个版本策略，对名为v1，v2，v2-mysql，v2-mysql-lvm的子集流量负载。</li><li>创建一个details目的地规则有三个版本策略，对名为v1，v2的子集流量负载。</li></ol><div class="language-yaml ext-yml line-numbers-mode"><pre class="language-yaml"><code>$ cat destination<span class="token punctuation">-</span>rule<span class="token punctuation">-</span>all.yaml 
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> networking.istio.io/v1alpha3
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> DestinationRule
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> productpage
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">host</span><span class="token punctuation">:</span> productpage
+  <span class="token key atrule">subsets</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> v1
+    <span class="token key atrule">labels</span><span class="token punctuation">:</span>
+      <span class="token key atrule">version</span><span class="token punctuation">:</span> v1
+<span class="token punctuation">---</span>
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> networking.istio.io/v1alpha3
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> DestinationRule
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> reviews
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">host</span><span class="token punctuation">:</span> reviews
+  <span class="token key atrule">subsets</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> v1
+    <span class="token key atrule">labels</span><span class="token punctuation">:</span>
+      <span class="token key atrule">version</span><span class="token punctuation">:</span> v1
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> v2
+    <span class="token key atrule">labels</span><span class="token punctuation">:</span>
+      <span class="token key atrule">version</span><span class="token punctuation">:</span> v2
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> v3
+    <span class="token key atrule">labels</span><span class="token punctuation">:</span>
+      <span class="token key atrule">version</span><span class="token punctuation">:</span> v3
+<span class="token punctuation">---</span>
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> networking.istio.io/v1alpha3
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> DestinationRule
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> ratings
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">host</span><span class="token punctuation">:</span> ratings
+  <span class="token key atrule">subsets</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> v1
+    <span class="token key atrule">labels</span><span class="token punctuation">:</span>
+      <span class="token key atrule">version</span><span class="token punctuation">:</span> v1
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> v2
+    <span class="token key atrule">labels</span><span class="token punctuation">:</span>
+      <span class="token key atrule">version</span><span class="token punctuation">:</span> v2
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> v2<span class="token punctuation">-</span>mysql
+    <span class="token key atrule">labels</span><span class="token punctuation">:</span>
+      <span class="token key atrule">version</span><span class="token punctuation">:</span> v2<span class="token punctuation">-</span>mysql
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> v2<span class="token punctuation">-</span>mysql<span class="token punctuation">-</span>vm
+    <span class="token key atrule">labels</span><span class="token punctuation">:</span>
+      <span class="token key atrule">version</span><span class="token punctuation">:</span> v2<span class="token punctuation">-</span>mysql<span class="token punctuation">-</span>vm
+<span class="token punctuation">---</span>
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> networking.istio.io/v1alpha3
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> DestinationRule
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> details
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">host</span><span class="token punctuation">:</span> details
+  <span class="token key atrule">subsets</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> v1
+    <span class="token key atrule">labels</span><span class="token punctuation">:</span>
+      <span class="token key atrule">version</span><span class="token punctuation">:</span> v1
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> v2
+    <span class="token key atrule">labels</span><span class="token punctuation">:</span>
+      <span class="token key atrule">version</span><span class="token punctuation">:</span> v2
+<span class="token punctuation">---</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>执行后查看生效</p><div class="language-bash ext-sh line-numbers-mode"><pre class="language-bash"><code>$ kubectl apply <span class="token parameter variable">-f</span> destination-rule-all.yaml 
+destinationrule.networking.istio.io/productpage created
+destinationrule.networking.istio.io/reviews created
+destinationrule.networking.istio.io/ratings created
+destinationrule.networking.istio.io/details created
+
+$ kubectl get destinationrules.networking.istio.io 
+NAME          HOST          AGE
+details       details       68m
+productpage   productpage   68m
+ratings       ratings       68m
+reviews       reviews       68m
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="httpbin练习" tabindex="-1"><a class="header-anchor" href="#httpbin练习" aria-hidden="true">#</a> httpbin练习</h2><h3 id="istio网关配置入口" tabindex="-1"><a class="header-anchor" href="#istio网关配置入口" aria-hidden="true">#</a> Istio网关配置入口</h3><ol><li>配置网关的名称为Gateway</li><li>选择调度在默认的gateway</li><li>配置网关外部HTTP入口流量</li><li>在端口80上为HTTP流量配置网关，<a href="http://xn--httpbin-e73kia442cc01cbyv.example.com" target="_blank" rel="noopener noreferrer">主机值应为httpbin.example.com<span><svg class="external-link-icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg><span class="external-link-icon-sr-only">open in new window</span></span></a>。</li></ol><div class="language-yaml ext-yml line-numbers-mode"><pre class="language-yaml"><code><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> networking.istio.io/v1alpha3
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Gateway
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> httpbin<span class="token punctuation">-</span>gateway
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">selector</span><span class="token punctuation">:</span>
+    <span class="token key atrule">istio</span><span class="token punctuation">:</span> ingressgateway <span class="token comment"># use Istio default gateway implementation</span>
+  <span class="token key atrule">servers</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">port</span><span class="token punctuation">:</span>
+      <span class="token key atrule">number</span><span class="token punctuation">:</span> <span class="token number">80</span>
+      <span class="token key atrule">name</span><span class="token punctuation">:</span> http
+      <span class="token key atrule">protocol</span><span class="token punctuation">:</span> HTTP
+    <span class="token key atrule">hosts</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token string">&quot;httpbin.example.com&quot;</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="虚拟服务配置" tabindex="-1"><a class="header-anchor" href="#虚拟服务配置" aria-hidden="true">#</a> 虚拟服务配置</h3><ol><li>现在为 httpbin 服务创建一个虚拟服务配置，其中包含两个允许路径 /status 和 /delay 流量的路由规则。</li><li>虚拟服务的名称为httpbin</li><li><a href="http://xn--httpbin-m73k77gyz4g195a.example.com" target="_blank" rel="noopener noreferrer">主机使用httpbin.example.com<span><svg class="external-link-icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg><span class="external-link-icon-sr-only">open in new window</span></span></a></li><li>目标端口和主机应分别为8000和httpbin。</li><li>添加match.uri 和route部分。</li></ol><div class="language-yaml ext-yml line-numbers-mode"><pre class="language-yaml"><code><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> networking.istio.io/v1alpha3
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> VirtualService
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> httpbin
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">hosts</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token string">&quot;httpbin.example.com&quot;</span>
+  <span class="token key atrule">gateways</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> httpbin<span class="token punctuation">-</span>gateway
+  <span class="token key atrule">http</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">match</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">uri</span><span class="token punctuation">:</span>
+        <span class="token key atrule">prefix</span><span class="token punctuation">:</span> /status
+    <span class="token punctuation">-</span> <span class="token key atrule">uri</span><span class="token punctuation">:</span>
+        <span class="token key atrule">prefix</span><span class="token punctuation">:</span> /delay
+    <span class="token key atrule">route</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">destination</span><span class="token punctuation">:</span>
+        <span class="token key atrule">port</span><span class="token punctuation">:</span>
+          <span class="token key atrule">number</span><span class="token punctuation">:</span> <span class="token number">8000</span>
+        <span class="token key atrule">host</span><span class="token punctuation">:</span> httpbin
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="其他" tabindex="-1"><a class="header-anchor" href="#其他" aria-hidden="true">#</a> 其他</h2><h3 id="添加目的地规则" tabindex="-1"><a class="header-anchor" href="#添加目的地规则" aria-hidden="true">#</a> 添加目的地规则</h3><div class="language-bash ext-sh line-numbers-mode"><pre class="language-bash"><code>root@controlplane:/<span class="token comment"># kubectl get pods </span>
+NAME                      READY   STATUS    RESTARTS   AGE
+app-v1-5f5f5d55cd-drspk   <span class="token number">2</span>/2     Running   <span class="token number">0</span>          11m
+app-v2-8bb879574-khfp5    <span class="token number">2</span>/2     Running   <span class="token number">0</span>          11m
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>在两个版本的 myapp 之间配置加权路由。但首先，让我们创建一个具有以下规范的 DestinationRule。</p><p><code>1. name:</code> myapp</p><p><code>2. host:</code> myapp</p><p><code>3. subset 1</code>:</p><blockquote><p><code>name:</code> v1 <code>labels:</code> version=v1</p></blockquote><p><code>3. subset 2</code>:</p><blockquote><p><code>name:</code> v2 <code>labels:</code> version=v2</p></blockquote><p>使用以下 YAML 创建 DestinationRule：</p><div class="language-yaml ext-yml line-numbers-mode"><pre class="language-yaml"><code><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> networking.istio.io/v1alpha3
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> DestinationRule
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> myapp
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">host</span><span class="token punctuation">:</span> myapp
+  <span class="token key atrule">subsets</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> v1
+    <span class="token key atrule">labels</span><span class="token punctuation">:</span>
+      <span class="token key atrule">version</span><span class="token punctuation">:</span> v1
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> v2
+    <span class="token key atrule">labels</span><span class="token punctuation">:</span>
+      <span class="token key atrule">version</span><span class="token punctuation">:</span> v2
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="流量控制" tabindex="-1"><a class="header-anchor" href="#流量控制" aria-hidden="true">#</a> 流量控制</h3><p>更新名为 myapp 的 VirtualService，将 80% 的流量路由到 v1 子集，将 20% 路由到 v2 子集。</p><div class="language-yaml ext-yml line-numbers-mode"><pre class="language-yaml"><code><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> networking.istio.io/v1beta1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> VirtualService
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> myapp
+  <span class="token key atrule">namespace</span><span class="token punctuation">:</span> default
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">gateways</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> myapp<span class="token punctuation">-</span>gateway
+  <span class="token key atrule">hosts</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> myapp.example.com
+  <span class="token key atrule">http</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">match</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">uri</span><span class="token punctuation">:</span>
+        <span class="token key atrule">prefix</span><span class="token punctuation">:</span> /myapp
+    <span class="token key atrule">rewrite</span><span class="token punctuation">:</span>
+      <span class="token key atrule">uri</span><span class="token punctuation">:</span> /
+    <span class="token key atrule">route</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">destination</span><span class="token punctuation">:</span>
+        <span class="token key atrule">port</span><span class="token punctuation">:</span>
+          <span class="token key atrule">number</span><span class="token punctuation">:</span> <span class="token number">8080</span>
+        <span class="token key atrule">host</span><span class="token punctuation">:</span> myapp
+        <span class="token key atrule">subset</span><span class="token punctuation">:</span> v1
+      <span class="token key atrule">weight</span><span class="token punctuation">:</span> <span class="token number">80</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">destination</span><span class="token punctuation">:</span>
+        <span class="token key atrule">port</span><span class="token punctuation">:</span>
+          <span class="token key atrule">number</span><span class="token punctuation">:</span> <span class="token number">8080</span>
+        <span class="token key atrule">host</span><span class="token punctuation">:</span> myapp
+        <span class="token key atrule">subset</span><span class="token punctuation">:</span> v2
+      <span class="token key atrule">weight</span><span class="token punctuation">:</span> <span class="token number">20</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="故障注入" tabindex="-1"><a class="header-anchor" href="#故障注入" aria-hidden="true">#</a> 故障注入</h3><p>更新故障注入以中止 50% 返回码为 HTTP 400 的请求</p><div class="language-yaml ext-yml line-numbers-mode"><pre class="language-yaml"><code><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> networking.istio.io/v1beta1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> VirtualService
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> httpbin
+  <span class="token key atrule">namespace</span><span class="token punctuation">:</span> default
+
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">gateways</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> httpbin<span class="token punctuation">-</span>gateway
+  <span class="token key atrule">hosts</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> httpbin.example.com
+  <span class="token key atrule">http</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">fault</span><span class="token punctuation">:</span>
+      <span class="token key atrule">abort</span><span class="token punctuation">:</span>
+        <span class="token key atrule">httpStatus</span><span class="token punctuation">:</span> <span class="token number">400</span>
+        <span class="token key atrule">percentage</span><span class="token punctuation">:</span>
+          <span class="token key atrule">value</span><span class="token punctuation">:</span> <span class="token number">50</span>
+    <span class="token key atrule">match</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">uri</span><span class="token punctuation">:</span>
+        <span class="token key atrule">prefix</span><span class="token punctuation">:</span> /status
+    <span class="token punctuation">-</span> <span class="token key atrule">uri</span><span class="token punctuation">:</span>
+        <span class="token key atrule">prefix</span><span class="token punctuation">:</span> /delay
+    <span class="token punctuation">-</span> <span class="token key atrule">uri</span><span class="token punctuation">:</span>
+        <span class="token key atrule">prefix</span><span class="token punctuation">:</span> /html
+    <span class="token key atrule">route</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">destination</span><span class="token punctuation">:</span>
+        <span class="token key atrule">host</span><span class="token punctuation">:</span> httpbin
+        <span class="token key atrule">port</span><span class="token punctuation">:</span>
+          <span class="token key atrule">number</span><span class="token punctuation">:</span> <span class="token number">8000</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="请求超时" tabindex="-1"><a class="header-anchor" href="#请求超时" aria-hidden="true">#</a> 请求超时</h3><p>最后，将 virtualservice 配置更新为在 3 秒后对 httpbin 服务的所有调用超时。</p><div class="language-yaml ext-yml line-numbers-mode"><pre class="language-yaml"><code><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> networking.istio.io/v1beta1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> VirtualService
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> httpbin
+  <span class="token key atrule">namespace</span><span class="token punctuation">:</span> default
+
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">gateways</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> httpbin<span class="token punctuation">-</span>gateway
+  <span class="token key atrule">hosts</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> httpbin.example.com
+  <span class="token key atrule">http</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">fault</span><span class="token punctuation">:</span>
+      <span class="token key atrule">abort</span><span class="token punctuation">:</span>
+        <span class="token key atrule">httpStatus</span><span class="token punctuation">:</span> <span class="token number">400</span>
+        <span class="token key atrule">percentage</span><span class="token punctuation">:</span>
+          <span class="token key atrule">value</span><span class="token punctuation">:</span> <span class="token number">50</span>
+    <span class="token key atrule">timeout</span><span class="token punctuation">:</span> 3s
+    <span class="token key atrule">match</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">uri</span><span class="token punctuation">:</span>
+        <span class="token key atrule">prefix</span><span class="token punctuation">:</span> /status
+    <span class="token punctuation">-</span> <span class="token key atrule">uri</span><span class="token punctuation">:</span>
+        <span class="token key atrule">prefix</span><span class="token punctuation">:</span> /delay
+    <span class="token punctuation">-</span> <span class="token key atrule">uri</span><span class="token punctuation">:</span>
+        <span class="token key atrule">prefix</span><span class="token punctuation">:</span> /html
+    <span class="token key atrule">route</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">destination</span><span class="token punctuation">:</span>
+        <span class="token key atrule">host</span><span class="token punctuation">:</span> httpbin
+        <span class="token key atrule">port</span><span class="token punctuation">:</span>
+          <span class="token key atrule">number</span><span class="token punctuation">:</span> <span class="token number">8000</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="金丝雀发布" tabindex="-1"><a class="header-anchor" href="#金丝雀发布" aria-hidden="true">#</a> 金丝雀发布</h2><h3 id="【题目1】金丝雀发布-安装" tabindex="-1"><a class="header-anchor" href="#【题目1】金丝雀发布-安装" aria-hidden="true">#</a> 【题目1】金丝雀发布-安装</h3><p>由于 Kubernetes 使用的 IPVS 模块需要系统内核版本支持，试使用提供的软件包 （Canary_v1.0.tar.gz 在 http 服务下）将系统内核进行升级，在 Kubernetes 集群上完成 Istio 的安装，并将 default Namespace 设置自动注入。</p><div class="language-bash ext-sh line-numbers-mode"><pre class="language-bash"><code>$ yum <span class="token function">install</span> https://www.elrepo.org/elrepo-release-7.el7.elrepo.noarch.rpm <span class="token parameter variable">-y</span>
+$ yum <span class="token parameter variable">--enablerepo</span><span class="token operator">=</span><span class="token string">&quot;elrepo-kernel&quot;</span> <span class="token parameter variable">-y</span> <span class="token function">install</span> kernel-ml.x86_64 
+$ grub2-set-default <span class="token number">0</span>
+$ grub2-mkconfig <span class="token parameter variable">-o</span> /boot/grub2/grub.cfg    <span class="token comment">#重启电脑</span>
+$ <span class="token function">tar</span> <span class="token parameter variable">-zxvf</span> istio-1.9.5-linux-amd64.tar.gz
+$ <span class="token builtin class-name">cd</span> istio-1.9.5/
+$ <span class="token function">cp</span> bin/istioctl  /usr/local/bin/
+$ kubectl  create  ns istio-system
+$ istioctl <span class="token function">install</span> <span class="token parameter variable">--set</span> <span class="token assign-left variable">profile</span><span class="token operator">=</span>demo <span class="token parameter variable">-y</span>
+✔ Istio core installed                                                   
+✔ Istiod installed                                                  
+✔ Egress gateways installed                                                        
+✔ Ingress gateways installed                                                        
+✔ Installation complete     
+$ kubectl label namespace default istio-injection<span class="token operator">=</span>enabled 
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>使用检测命令检查：</p><div class="language-bash ext-sh line-numbers-mode"><pre class="language-bash"><code>$ kubectl <span class="token parameter variable">-n</span> istio-system get deploy
+NAME                   READY   UP-TO-DATE   AVAILABLE   AGE
+istio-egressgateway    <span class="token number">1</span>/1     <span class="token number">1</span>            <span class="token number">1</span>           25s
+istio-ingressgateway   <span class="token number">1</span>/1     <span class="token number">1</span>            <span class="token number">1</span>           24s
+istiod                 <span class="token number">1</span>/1     <span class="token number">1</span>            <span class="token number">1</span>           20s
+
+$ kubectl get ns --show-labels<span class="token operator">=</span>true<span class="token operator">|</span><span class="token function">grep</span> default 
+default           Active   121m   istio-injection<span class="token operator">=</span>enabled
+
+$ <span class="token function">uname</span> <span class="token parameter variable">-r</span>
+<span class="token number">5.12</span>.0-1.el7.elrepo.x86_64
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="【题目2】金丝雀发布-流量控制" tabindex="-1"><a class="header-anchor" href="#【题目2】金丝雀发布-流量控制" aria-hidden="true">#</a> 【题目2】金丝雀发布-流量控制</h3><p>使用赛项提供的文件(istio-1.9.5/samples/helloworld/helloworld.yaml)在 default 命名空间 下完成 hellworld 服务的部署，然后设置路由规则来控制流量分配，创建一个虚拟服务 helloworld；再创建一个目标规则 helloworld，将 10％的流量发送到金丝雀版本(v2)。</p><div class="language-bash ext-sh line-numbers-mode"><pre class="language-bash"><code>$ kubectl apply <span class="token parameter variable">-f</span> samples/helloworld/helloworld.yaml 
+$ kubectl get pods 
+NAME                              READY   STATUS    RESTARTS   AGE
+helloworld-v1-776f57d5f6-m5xqg    <span class="token number">2</span>/2     Running   <span class="token number">0</span>          100m
+helloworld-v2-54df5f84b-mwsf6     <span class="token number">2</span>/2     Running   <span class="token number">0</span>          100m
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><div class="language-yaml ext-yml line-numbers-mode"><pre class="language-yaml"><code>$ cat  helloworld<span class="token punctuation">-</span>gateway.yaml  
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> networking.istio.io/v1alpha3
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Gateway
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> helloworld
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">selector</span><span class="token punctuation">:</span>
+    <span class="token key atrule">istio</span><span class="token punctuation">:</span> ingressgateway 
+  <span class="token key atrule">servers</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">port</span><span class="token punctuation">:</span>
+      <span class="token key atrule">number</span><span class="token punctuation">:</span> <span class="token number">80</span>
+      <span class="token key atrule">name</span><span class="token punctuation">:</span> http
+      <span class="token key atrule">protocol</span><span class="token punctuation">:</span> HTTP
+    <span class="token key atrule">hosts</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token string">&quot;*&quot;</span>
+<span class="token punctuation">---</span>
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> networking.istio.io/v1alpha3
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> VirtualService
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> helloworld
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">hosts</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token string">&quot;*&quot;</span>
+  <span class="token key atrule">gateways</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> helloworld
+  <span class="token key atrule">http</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">match</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">uri</span><span class="token punctuation">:</span>
+        <span class="token key atrule">exact</span><span class="token punctuation">:</span> /hello
+    <span class="token key atrule">route</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">destination</span><span class="token punctuation">:</span> 
+        <span class="token key atrule">host</span><span class="token punctuation">:</span> helloworld
+        <span class="token key atrule">subset</span><span class="token punctuation">:</span> v1  
+      <span class="token key atrule">weight</span><span class="token punctuation">:</span> <span class="token number">90</span> 
+    <span class="token punctuation">-</span> <span class="token key atrule">destination</span><span class="token punctuation">:</span>
+        <span class="token key atrule">host</span><span class="token punctuation">:</span> helloworld
+        <span class="token key atrule">subset</span><span class="token punctuation">:</span> v2
+      <span class="token key atrule">weight</span><span class="token punctuation">:</span> <span class="token number">10</span> 
+      
+
+$ cat  DestinationRule.yaml  
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> networking.istio.io/v1alpha3
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> DestinationRule 
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span> 
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> helloword 
+<span class="token key atrule">spec</span><span class="token punctuation">:</span> 
+  <span class="token key atrule">host</span><span class="token punctuation">:</span> helloword 
+  <span class="token key atrule">subsets</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> v1 
+    <span class="token key atrule">labels</span><span class="token punctuation">:</span> 
+      <span class="token key atrule">version</span><span class="token punctuation">:</span> v1 
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> v2 
+    <span class="token key atrule">labels</span><span class="token punctuation">:</span> 
+      <span class="token key atrule">version</span><span class="token punctuation">:</span> v2 
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>使用检测命令检查</p><div class="language-bash ext-sh line-numbers-mode"><pre class="language-bash"><code>$ kubectl get VirtualService,DestinationRule
+NAME                                            GATEWAYS               HOSTS         AGE
+virtualservice.networking.istio.io/helloworld   <span class="token punctuation">[</span><span class="token string">&quot;helloworld&quot;</span><span class="token punctuation">]</span>         <span class="token punctuation">[</span><span class="token string">&quot;*&quot;</span><span class="token punctuation">]</span>         95m
+
+NAME                                              HOST          AGE
+destinationrule.networking.istio.io/helloword     helloword     57m
+
+$ kubectl describe VirtualService helloworld <span class="token operator">|</span><span class="token function">grep</span> Route <span class="token parameter variable">-A</span> <span class="token number">10</span> <span class="token operator">|</span> <span class="token function">xargs</span> 
+Route: Destination: Host: helloworld Subset: v1 Weight: <span class="token number">90</span> Destination: Host: helloworld Subset: v2 Weight: <span class="token number">10</span> Events: <span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="【题目3】金丝雀发布-熔断" tabindex="-1"><a class="header-anchor" href="#【题目3】金丝雀发布-熔断" aria-hidden="true">#</a> 【题目3】金丝雀发布-熔断</h3><p>使用赛项提供的文件(istio-1.9.5/samples/httpbin/httpbin-fortio.yaml)在 default 命名空间下 完成 httpbin 服务的部署，创建一个目标规则 httpbin，在调用 httpbin 服务时应用熔断设置， 具体要求为</p><p>（1）定义到目标主机的 HTTP1/TCP 最大连接数为 1；</p><p>（2）定义针对一个目标的 HTTP 请求的最大排队数量为 1；</p><p>（3）定义对某一后端的请求中，一个连接内能够发出的最大请求数量为 1。</p><div class="language-bash ext-sh line-numbers-mode"><pre class="language-bash"><code>$ kubectl apply <span class="token parameter variable">-f</span> samples/httpbin/sample-client/fortio-deploy.yaml  
+service/fortio created
+deployment.apps/fortio-deploy created
+$ kubectl get pods 
+NAME                              READY   STATUS    RESTARTS   AGE
+fortio-deploy-576dbdfbc4-rdtrd    <span class="token number">2</span>/2     Running   <span class="token number">0</span>          2m28s
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><div class="language-yaml ext-yml line-numbers-mode"><pre class="language-yaml"><code>$ kubectl apply <span class="token punctuation">-</span>f <span class="token punctuation">-</span> &lt;&lt;EOF
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> networking.istio.io/v1alpha3
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> DestinationRule
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> httpbin
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">host</span><span class="token punctuation">:</span> httpbin
+  <span class="token key atrule">trafficPolicy</span><span class="token punctuation">:</span>
+    <span class="token key atrule">connectionPool</span><span class="token punctuation">:</span>
+      <span class="token key atrule">tcp</span><span class="token punctuation">:</span>
+        <span class="token key atrule">maxConnections</span><span class="token punctuation">:</span> <span class="token number">1</span>
+      <span class="token key atrule">http</span><span class="token punctuation">:</span>
+        <span class="token key atrule">http1MaxPendingRequests</span><span class="token punctuation">:</span> <span class="token number">1</span>
+        <span class="token key atrule">maxRequestsPerConnection</span><span class="token punctuation">:</span> <span class="token number">1</span>
+    <span class="token key atrule">outlierDetection</span><span class="token punctuation">:</span>
+      <span class="token key atrule">consecutive5xxErrors</span><span class="token punctuation">:</span> <span class="token number">1</span>
+      <span class="token key atrule">interval</span><span class="token punctuation">:</span> 1s
+      <span class="token key atrule">baseEjectionTime</span><span class="token punctuation">:</span> 3m
+      <span class="token key atrule">maxEjectionPercent</span><span class="token punctuation">:</span> <span class="token number">100</span>
+EOF
+destinationrule.networking.istio.io/httpbin created
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>使用检测命令检查</p><div class="language-bash ext-sh line-numbers-mode"><pre class="language-bash"><code>$ kubectl describe DestinationRule httpbin 
+···
+Spec:
+  Host:  httpbin
+  Traffic Policy:
+    Connection Pool:
+      Http:
+        http1MaxPendingRequests:      <span class="token number">1</span>
+        Max Requests Per Connection:  <span class="token number">1</span>
+      Tcp:
+        Max Connections:  <span class="token number">1</span>
+    Outlier Detection:
+      Base Ejection Time:    3m
+      consecutive5xxErrors:  <span class="token number">1</span>
+      Interval:              1s
+      Max Ejection Percent:  <span class="token number">100</span>
+Events:                      <span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="【题目-4】金丝雀发布-流量镜像" tabindex="-1"><a class="header-anchor" href="#【题目-4】金丝雀发布-流量镜像" aria-hidden="true">#</a> 【题目 4】金丝雀发布-流量镜像</h3><p>使用赛项提供的文件(istio-1.9.5/samples/httpbin/httpbin-sleep.yaml)在 default 命名空间下 完成 httpbin-v1、httpbin-v2 以及 sleep 服务的部署，创建一个虚拟服务 httpbin 和一个目标规 则 httpbin，将所有流量路由到 httpbin-v1 服务，然后将 100%的相同流量镜像（即发送）到 httpbin-v2 服务。</p><p><code>这是httpbin.yaml </code></p><div class="language-yaml ext-yml line-numbers-mode"><pre class="language-yaml"><code><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> apps/v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Deployment
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> httpbin<span class="token punctuation">-</span>v1
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">replicas</span><span class="token punctuation">:</span> <span class="token number">1</span>
+  <span class="token key atrule">selector</span><span class="token punctuation">:</span>
+    <span class="token key atrule">matchLabels</span><span class="token punctuation">:</span>
+      <span class="token key atrule">app</span><span class="token punctuation">:</span> httpbin
+      <span class="token key atrule">version</span><span class="token punctuation">:</span> v1
+  <span class="token key atrule">template</span><span class="token punctuation">:</span>
+    <span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+      <span class="token key atrule">labels</span><span class="token punctuation">:</span>
+        <span class="token key atrule">app</span><span class="token punctuation">:</span> httpbin
+        <span class="token key atrule">version</span><span class="token punctuation">:</span> v1
+    <span class="token key atrule">spec</span><span class="token punctuation">:</span>
+      <span class="token key atrule">containers</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">image</span><span class="token punctuation">:</span> docker.io/kennethreitz/httpbin
+        <span class="token key atrule">imagePullPolicy</span><span class="token punctuation">:</span> IfNotPresent
+        <span class="token key atrule">name</span><span class="token punctuation">:</span> httpbin
+        <span class="token key atrule">command</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&quot;gunicorn&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;--access-logfile&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;-&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;-b&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;0.0.0.0:80&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;httpbin:app&quot;</span><span class="token punctuation">]</span>
+        <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">containerPort</span><span class="token punctuation">:</span> <span class="token number">80</span>
+<span class="token punctuation">---</span>
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> apps/v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Deployment
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> httpbin<span class="token punctuation">-</span>v2
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">replicas</span><span class="token punctuation">:</span> <span class="token number">1</span>
+  <span class="token key atrule">selector</span><span class="token punctuation">:</span>
+    <span class="token key atrule">matchLabels</span><span class="token punctuation">:</span>
+      <span class="token key atrule">app</span><span class="token punctuation">:</span> httpbin
+      <span class="token key atrule">version</span><span class="token punctuation">:</span> v2
+  <span class="token key atrule">template</span><span class="token punctuation">:</span>
+    <span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+      <span class="token key atrule">labels</span><span class="token punctuation">:</span>
+        <span class="token key atrule">app</span><span class="token punctuation">:</span> httpbin
+        <span class="token key atrule">version</span><span class="token punctuation">:</span> v2
+    <span class="token key atrule">spec</span><span class="token punctuation">:</span>
+      <span class="token key atrule">containers</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">image</span><span class="token punctuation">:</span> docker.io/kennethreitz/httpbin
+        <span class="token key atrule">imagePullPolicy</span><span class="token punctuation">:</span> IfNotPresent
+        <span class="token key atrule">name</span><span class="token punctuation">:</span> httpbin
+        <span class="token key atrule">command</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&quot;gunicorn&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;--access-logfile&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;-&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;-b&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;0.0.0.0:80&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;httpbin:app&quot;</span><span class="token punctuation">]</span>
+        <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">containerPort</span><span class="token punctuation">:</span> <span class="token number">80</span>
+<span class="token punctuation">---</span>
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Service
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> httpbin
+  <span class="token key atrule">labels</span><span class="token punctuation">:</span>
+    <span class="token key atrule">app</span><span class="token punctuation">:</span> httpbin
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> http
+    <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">8000</span>
+    <span class="token key atrule">targetPort</span><span class="token punctuation">:</span> <span class="token number">80</span>
+  <span class="token key atrule">selector</span><span class="token punctuation">:</span>
+    <span class="token key atrule">app</span><span class="token punctuation">:</span> httpbin
+<span class="token punctuation">---</span>
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> apps/v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Deployment
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> sleep
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">replicas</span><span class="token punctuation">:</span> <span class="token number">1</span>
+  <span class="token key atrule">selector</span><span class="token punctuation">:</span>
+    <span class="token key atrule">matchLabels</span><span class="token punctuation">:</span>
+      <span class="token key atrule">app</span><span class="token punctuation">:</span> sleep
+  <span class="token key atrule">template</span><span class="token punctuation">:</span>
+    <span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+      <span class="token key atrule">labels</span><span class="token punctuation">:</span>
+        <span class="token key atrule">app</span><span class="token punctuation">:</span> sleep
+    <span class="token key atrule">spec</span><span class="token punctuation">:</span>
+      <span class="token key atrule">containers</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> sleep
+        <span class="token key atrule">image</span><span class="token punctuation">:</span> curlimages/curl
+        <span class="token key atrule">command</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&quot;/bin/sleep&quot;</span><span class="token punctuation">,</span><span class="token string">&quot;3650d&quot;</span><span class="token punctuation">]</span>
+        <span class="token key atrule">imagePullPolicy</span><span class="token punctuation">:</span> IfNotPresent
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>如下是解答</p><div class="language-yaml ext-yml line-numbers-mode"><pre class="language-yaml"><code>$ kubectl apply <span class="token punctuation">-</span>f <span class="token punctuation">-</span> &lt;&lt;EOF
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> networking.istio.io/v1alpha3
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> VirtualService
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> httpbin
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">hosts</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> httpbin
+  <span class="token key atrule">http</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">route</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">destination</span><span class="token punctuation">:</span>
+        <span class="token key atrule">host</span><span class="token punctuation">:</span> httpbin
+        <span class="token key atrule">subset</span><span class="token punctuation">:</span> v1
+      <span class="token key atrule">weight</span><span class="token punctuation">:</span> <span class="token number">100</span>
+    <span class="token key atrule">mirror</span><span class="token punctuation">:</span>
+      <span class="token key atrule">host</span><span class="token punctuation">:</span> httpbin
+      <span class="token key atrule">subset</span><span class="token punctuation">:</span> v2
+    <span class="token key atrule">mirrorPercentage</span><span class="token punctuation">:</span>
+      <span class="token key atrule">value</span><span class="token punctuation">:</span> <span class="token number">100.0</span>
+<span class="token punctuation">---</span>
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> networking.istio.io/v1alpha3
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> DestinationRule
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> httpbin
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">host</span><span class="token punctuation">:</span> httpbin
+  <span class="token key atrule">subsets</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> v1
+    <span class="token key atrule">labels</span><span class="token punctuation">:</span>
+      <span class="token key atrule">version</span><span class="token punctuation">:</span> v1
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> v2
+    <span class="token key atrule">labels</span><span class="token punctuation">:</span>
+      <span class="token key atrule">version</span><span class="token punctuation">:</span> v2
+EOF
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>使用检测命令检查</p><div class="language-bash ext-sh line-numbers-mode"><pre class="language-bash"><code>$ kubectl describe virtualservice httpbin <span class="token operator">|</span> <span class="token function">grep</span> Mirror <span class="token parameter variable">-A</span> <span class="token number">2</span> 
+    Mirror:
+      Host:    httpbin
+      Subset:  v2
+    Mirror Percentage:
+      Value:  <span class="token number">100</span>
+    Route:
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="【题目-5】金丝雀发布-ingress-gateway" tabindex="-1"><a class="header-anchor" href="#【题目-5】金丝雀发布-ingress-gateway" aria-hidden="true">#</a> 【题目 5】金丝雀发布-Ingress Gateway</h3><p>使用赛项提供的文件(istio-1.9.5/samples/httpbin/httpbin.yaml)在 default 命名空间下完成 httpbin 服务的部署，在 80 端口为 HTTP 流量配置一个网关 httpbin-gateway，并为 httpbin 服 务创建了虚拟服务配置 httpbin，包含 1 个路由规则，允许流量流向路径/headers，并允许通 过浏览器访问服务。</p><div class="language-yaml ext-yml line-numbers-mode"><pre class="language-yaml"><code>$ kubectl apply <span class="token punctuation">-</span>f samples/httpbin/httpbin.yaml  
+serviceaccount/httpbin created
+service/httpbin created
+deployment.apps/httpbin created
+
+$ kubectl apply <span class="token punctuation">-</span>f <span class="token punctuation">-</span> &lt;&lt;EOF
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> networking.istio.io/v1alpha3
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Gateway
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> httpbin<span class="token punctuation">-</span>gateway
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">selector</span><span class="token punctuation">:</span>
+    <span class="token key atrule">istio</span><span class="token punctuation">:</span> ingressgateway   <span class="token comment">#使用Istio的默认网关</span>
+  <span class="token key atrule">servers</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">port</span><span class="token punctuation">:</span>
+      <span class="token key atrule">number</span><span class="token punctuation">:</span> <span class="token number">80</span>
+      <span class="token key atrule">name</span><span class="token punctuation">:</span> http
+      <span class="token key atrule">protocol</span><span class="token punctuation">:</span> HTTP
+    <span class="token key atrule">hosts</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token string">&quot;*&quot;</span>
+<span class="token punctuation">---</span>
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> networking.istio.io/v1alpha3
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> VirtualService
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> httpbin
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">hosts</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token string">&quot;*&quot;</span>
+  <span class="token key atrule">gateways</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> httpbin<span class="token punctuation">-</span>gateway
+  <span class="token key atrule">http</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">match</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">uri</span><span class="token punctuation">:</span>
+        <span class="token key atrule">prefix</span><span class="token punctuation">:</span> /headers
+    <span class="token key atrule">route</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">destination</span><span class="token punctuation">:</span>
+        <span class="token key atrule">port</span><span class="token punctuation">:</span>
+          <span class="token key atrule">number</span><span class="token punctuation">:</span> <span class="token number">8000</span>
+        <span class="token key atrule">host</span><span class="token punctuation">:</span> httpbin
+EOF
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>使用检测命令检查</p><div class="language-bash ext-sh line-numbers-mode"><pre class="language-bash"><code>$ kubectl get virtualservice
+NAME      GATEWAYS              HOSTS   AGE
+httpbin   <span class="token punctuation">[</span><span class="token string">&quot;httpbin-gateway&quot;</span><span class="token punctuation">]</span>   <span class="token punctuation">[</span><span class="token string">&quot;*&quot;</span><span class="token punctuation">]</span>   6m51s
+$ kubectl describe virtualservice httpbin
+···
+Spec:
+  Gateways:
+    httpbin-gateway
+  Hosts:
+    *
+  Http:
+    Match:
+      Uri:
+        Prefix:  /headers
+    Route:
+      Destination:
+        Host:  httpbin
+        Port:
+          Number:  <span class="token number">8000</span>
+Events:            <span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>
+
+$ <span class="token function">curl</span> <span class="token parameter variable">-s</span> <span class="token parameter variable">-I</span> <span class="token parameter variable">-HHost:httpbin.example.com</span> <span class="token string">&quot;http://node:<span class="token variable"><span class="token variable">$(</span>kubectl <span class="token parameter variable">-n</span> istio-system get <span class="token function">service</span> istio-ingressgateway <span class="token parameter variable">-o</span> <span class="token assign-left variable">jsonpath</span><span class="token operator">=</span><span class="token string">&#39;{.spec.ports[?(@.name==&quot;http2&quot;)].nodePort}&#39;</span><span class="token variable">)</span></span>/headers&quot;</span> 
+HTTP/1.1 <span class="token number">200</span> OK
+server: istio-envoy
+date: Thu, <span class="token number">16</span> Dec <span class="token number">2021</span> 05:32:00 GMT
+content-type: application/json
+content-length: <span class="token number">627</span>
+access-control-allow-origin: *
+access-control-allow-credentials: <span class="token boolean">true</span>
+x-envoy-upstream-service-time: <span class="token number">23</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div></div><!----><footer class="page-meta"><div class="meta-item edit-link"><a href="https://github.com/vuepress-theme-hope/vuepress-theme-hope/edit/main/demo/theme-docs/src/zh/cicd/istio/4.Istio练习题.md" rel="noopener noreferrer" target="_blank" aria-label="在 GitHub 上编辑此页" class="nav-link label"><!--[--><svg xmlns="http://www.w3.org/2000/svg" class="icon edit-icon" viewBox="0 0 1024 1024" fill="currentColor" aria-label="edit icon"><path d="M430.818 653.65a60.46 60.46 0 0 1-50.96-93.281l71.69-114.012 7.773-10.365L816.038 80.138A60.46 60.46 0 0 1 859.225 62a60.46 60.46 0 0 1 43.186 18.138l43.186 43.186a60.46 60.46 0 0 1 0 86.373L588.879 565.55l-8.637 8.637-117.466 68.234a60.46 60.46 0 0 1-31.958 11.229z"></path><path d="M728.802 962H252.891A190.883 190.883 0 0 1 62.008 771.98V296.934a190.883 190.883 0 0 1 190.883-192.61h267.754a60.46 60.46 0 0 1 0 120.92H252.891a69.962 69.962 0 0 0-69.098 69.099V771.98a69.962 69.962 0 0 0 69.098 69.098h475.911A69.962 69.962 0 0 0 797.9 771.98V503.363a60.46 60.46 0 1 1 120.922 0V771.98A190.883 190.883 0 0 1 728.802 962z"></path></svg><!--]-->在 GitHub 上编辑此页<span><svg class="external-link-icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg><span class="external-link-icon-sr-only">open in new window</span></span><!----></a></div><div class="meta-item update-time"><span class="label">上次编辑于: </span><!----></div><div class="meta-item contributors"><span class="label">贡献者: </span><!--[--><!--[--><span class="contributor" title="email: admin@example.com">Administrator</span><!--]--><!--]--></div></footer><nav class="page-nav"><a href="/zh/cicd/istio/3.Istio%E7%9A%84%E6%B7%B1%E5%85%A5%E6%B5%85.html" class="nav-link prev" aria-label="Istio由浅入深"><div class="hint"><span class="arrow left"></span>上一页</div><div class="link"><!---->Istio由浅入深</div></a><!----></nav><!----><!----><!--]--></main><!--]--><footer class="footer-wrapper"><div class="footer">默认页脚</div><div class="copyright">Copyright © 2022 isKcount</div></footer><!--]--></div><!--]--><!----><!----><!--]--></div>
+    <script type="module" src="/assets/app.85823306.js" defer></script>
+  </body>
+</html>
